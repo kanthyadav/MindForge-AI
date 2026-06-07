@@ -1,4 +1,4 @@
-const Session = require("../models/Session");
+const Session = require("../models/session");
 const { generateTranscript } = require("../services/transcriptionService");
 const { analyzeTranscript } = require("../services/analysisService");
 
