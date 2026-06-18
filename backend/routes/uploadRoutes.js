@@ -1,5 +1,6 @@
 const express = require("express");
 const multer = require("multer");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const {
   uploadAudio,
@@ -27,6 +28,7 @@ const upload = multer({
 
 router.post(
   "/",
+  authMiddleware,
   upload.single("audio"),
   uploadAudio
 );
