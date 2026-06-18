@@ -23,9 +23,10 @@ function App() {
         "https://mindforge-backend-api.onrender.com/api/sessions"
       );
 
-      setSessions(res.data);
+      setSessions(res.data.sessions || []);
     } catch (error) {
       console.error("Fetch Error:", error);
+      setSessions([]);
     }
   };
 
@@ -41,17 +42,16 @@ function App() {
     try {
       setLoading(true);
 
-      const res = await axios.post(
+      await axios.post(
         "https://mindforge-backend-api.onrender.com/api/upload",
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type":
+              "multipart/form-data",
           },
         }
       );
-
-      console.log("Upload Response:", res.data);
 
       await fetchSessions();
 
@@ -160,7 +160,8 @@ function App() {
                 </h4>
 
                 {session.keyPoints &&
-                session.keyPoints.length > 0 ? (
+                session.keyPoints.length >
+                  0 ? (
                   <ul>
                     {session.keyPoints.map(
                       (point, index) => (
