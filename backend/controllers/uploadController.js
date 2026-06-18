@@ -1,82 +1,47 @@
 const Session = require("../models/session");
-const {
-  generateTranscript,
-} = require("../services/transcriptionService");
-
-const {
-  analyzeTranscript,
-} = require("../services/analysisService");
+const { generateTranscript } = require("../services/transcriptionService");
+const { analyzeTranscript } = require("../services/analysisService");
 
 const uploadAudio = async (req, res) => {
   try {
-    if (!req.file) {
-      return res.status(400).json({
-        success: false,
-        message: "No audio file uploaded",
-      });
-    }
+    console.log("STEP 1: Upload started");
 
     const session = await Session.create({
       title: req.file.originalname,
       audioUrl: req.file.path,
     });
 
-    console.log("Generating transcript...");
+    console.log("STEP 2: Session created");
 
-    const transcript =
-      await generateTranscript(req.file.path);
+    const transcript = await generateTranscript(req.file.path);
 
-    if (
-      !transcript ||
-      transcript.trim().length < 10
-    ) {
-      return res.status(400).json({
-        success: false,
-        message:
-          "No meaningful speech detected in audio",
-      });
-    }
+    console.log("STEP 3: Transcript generated");
 
     session.transcript = transcript;
 
-    console.log(
-      "Analyzing transcript with Gemini..."
-    );
+    const analysis = await analyzeTranscript(transcript);
 
-    const analysis =
-      await analyzeTranscript(transcript);
+    console.log("STEP 4: Analysis completed");
 
-    console.log("Analysis Result:");
-    console.log(analysis);
-
-    session.contentType =
-      analysis.contentType || "other";
-
-    session.summary =
-      analysis.summary || "Summary unavailable";
-
-    session.keyPoints =
-      analysis.keyPoints || [];
+    session.contentType = analysis.contentType;
+    session.summary = analysis.summary;
+    session.keyPoints = analysis.keyPoints;
 
     await session.save();
 
+    console.log("STEP 5: Session saved");
+
     res.status(201).json({
       success: true,
-      message:
-        "Audio processed successfully",
       session,
     });
   } catch (error) {
-    console.error(
-      "Upload Controller Error:",
-      error
-    );
+    console.error("UPLOAD CONTROLLER ERROR:");
+    console.error(error);
 
     res.status(500).json({
       success: false,
-      message:
-        error.message ||
-        "Internal Server Error",
+      message: error.message,
     });
   }
 };
