@@ -20,7 +20,7 @@ function App() {
   const fetchSessions = async () => {
     try {
       const res = await axios.get(
-        "https://mindforge-backend-api.onrender.com/api/sessions"
+        "https://mindforge-backend-6u3o.onrender.com/api/sessions"
       );
 
       setSessions(res.data.sessions || []);
@@ -43,12 +43,11 @@ function App() {
       setLoading(true);
 
       await axios.post(
-        "https://mindforge-backend-api.onrender.com/api/upload",
+        "https://mindforge-backend-6u3o.onrender.com/api/upload",
         formData,
         {
           headers: {
-            "Content-Type":
-              "multipart/form-data",
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -160,8 +159,7 @@ function App() {
                 </h4>
 
                 {session.keyPoints &&
-                session.keyPoints.length >
-                  0 ? (
+                session.keyPoints.length > 0 ? (
                   <ul>
                     {session.keyPoints.map(
                       (point, index) => (
