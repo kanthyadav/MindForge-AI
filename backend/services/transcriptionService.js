@@ -10,32 +10,21 @@ const generateTranscript = async (filePath) => {
     const uploadUrl =
       await client.files.upload(audioData);
 
-    console.log(
-      "Audio uploaded successfully"
-    );
+    console.log("Audio uploaded successfully");
 
     const transcript =
       await client.transcripts.transcribe({
         audio: uploadUrl,
-        speech_model: "universal",
       });
 
-    if (!transcript.text) {
-      throw new Error(
-        "No transcript generated"
-      );
-    }
+    console.log("Transcript generated");
 
-    console.log(
-      "Transcript generated successfully"
-    );
-
-    return transcript.text;
+    return transcript.text || "";
   } catch (error) {
     console.error(
-      "Transcription Error:",
-      error
+      "Transcription Error:"
     );
+    console.error(error);
 
     throw error;
   }
