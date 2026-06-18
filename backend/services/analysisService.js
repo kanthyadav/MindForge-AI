@@ -1,4 +1,4 @@
-const client = require("./aiService");
+const genAI = require("./aiService");
 
 const analyzeTranscript = async (transcript) => {
   try {
@@ -39,17 +39,16 @@ Transcript:
 ${transcript}
 `;
 
-    const response = await client.chat.completions.create({
-      model: "openai/gpt-oss-20b:free",
-      messages: [
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
-    });
+    const model =
+      genAI.getGenerativeModel({
+        model: "gemini-2.5-flash",
+      });
 
-    let content = response.choices[0].message.content;
+    const result =
+      await model.generateContent(prompt);
+
+    let content =
+      result.response.text();
 
     content = content
       .replace(/```json/gi, "")
@@ -59,15 +58,27 @@ ${transcript}
     console.log("AI RESPONSE:");
     console.log(content);
 
-    const parsedData = JSON.parse(content);
+    const parsedData =
+      JSON.parse(content);
 
     return {
-      contentType: parsedData.contentType || "other",
-      summary: parsedData.summary || "",
-      keyPoints: parsedData.keyPoints || [],
+      contentType:
+        parsedData.contentType ||
+        "other",
+
+      summary:
+        parsedData.summary ||
+        "",
+
+      keyPoints:
+        parsedData.keyPoints ||
+        [],
     };
   } catch (error) {
-    console.error("AI Analysis Error:", error);
+    console.error(
+      "AI Analysis Error:",
+      error
+    );
 
     return {
       contentType: "other",
