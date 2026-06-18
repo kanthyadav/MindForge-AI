@@ -2,7 +2,9 @@ const Session = require("../models/session");
 
 const getAllSessions = async (req, res) => {
   try {
-    const sessions = await Session.find().sort({
+    const sessions = await Session.find({
+      user: req.user.userId,
+    }).sort({
       createdAt: -1,
     });
 
@@ -12,11 +14,15 @@ const getAllSessions = async (req, res) => {
       sessions,
     });
   } catch (error) {
-    console.error("Fetch Sessions Error:", error);
+    console.error(
+      "Fetch Sessions Error:",
+      error
+    );
 
     res.status(500).json({
       success: false,
-      message: "Failed to fetch sessions",
+      message:
+        "Failed to fetch sessions",
     });
   }
 };

@@ -1,8 +1,18 @@
 const express = require("express");
-const { getAllSessions } = require("../controllers/sessionController");
+const {
+  getAllSessions,
+} = require("../controllers/sessionController");
+
+const authMiddleware = require(
+  "../middleware/authMiddleware"
+);
 
 const router = express.Router();
 
-router.get("/", getAllSessions);
+router.get(
+  "/",
+  authMiddleware,
+  getAllSessions
+);
 
 module.exports = router;
