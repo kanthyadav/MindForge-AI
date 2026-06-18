@@ -25,23 +25,19 @@ const fileFilter = (
   file,
   cb
 ) => {
-  const allowedTypes = [
-    "audio/mpeg",
-    "audio/wav",
-    "audio/x-wav",
-    "audio/mp4",
-    "audio/x-m4a",
-    "audio/aac",
-  ];
+  console.log(
+    "Uploaded File Type:",
+    file.mimetype
+  );
 
   if (
-    allowedTypes.includes(file.mimetype)
+    file.mimetype.startsWith("audio/")
   ) {
     cb(null, true);
   } else {
     cb(
       new Error(
-        "Only audio files are allowed"
+        `Only audio files are allowed. Received: ${file.mimetype}`
       ),
       false
     );
