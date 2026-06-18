@@ -3,46 +3,38 @@ const genAI = require("./aiService");
 const analyzeTranscript = async (transcript) => {
   try {
     const prompt = `
-Analyze the transcript.
+Analyze the following transcript.
 
-Return ONLY valid JSON.
-
-Categories for contentType:
-- lecture
-- meeting
-- interview
-- other
-
-Generate:
-1. contentType
-2. A detailed summary between 150 and 250 words
-3. 5 to 8 key points
-
-Format:
+Return ONLY a valid JSON object.
 
 {
-  "contentType": "",
-  "summary": "",
-  "keyPoints": []
+  "contentType": "lecture",
+  "summary": "Detailed summary here",
+  "keyPoints": [
+    "Point 1",
+    "Point 2",
+    "Point 3",
+    "Point 4",
+    "Point 5"
+  ]
 }
 
 Rules:
-- Choose ONLY one contentType from lecture, meeting, interview, other.
-- Summary should be detailed and easy to understand.
-- Generate 5 to 8 key points.
-- Each key point should be short and clear.
-- Return only JSON.
-- Do not use markdown.
-- Do not wrap JSON in code blocks.
+- contentType must be one of:
+  lecture, meeting, interview, other
+- summary must be between 150 and 250 words
+- generate 5 to 8 key points
+- return ONLY JSON
+- no markdown
+- no explanations
 
 Transcript:
 ${transcript}
 `;
 
-    const model =
-      genAI.getGenerativeModel({
-        model: "gemini-2.5-flash",
-      });
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.5-flash",
+    });
 
     const result =
       await model.generateContent(prompt);
@@ -55,24 +47,48 @@ ${transcript}
       .replace(/```/g, "")
       .trim();
 
-    console.log("AI RESPONSE:");
+    console.log(
+      "========== GEMINI RESPONSE =========="
+    );
     console.log(content);
+    console.log(
+      "====================================="
+    );
 
-    const parsedData =
-      JSON.parse(content);
+    let parsedData;
+
+    try {
+      parsedData = JSON.parse(content);
+    } catch (parseError) {
+      console.error(
+        "JSON Parse Error:",
+        parseError
+      );
+
+      return {
+        contentType: "other",
+        summary:
+          "AI generated response could not be parsed.",
+        keyPoints: [
+          "Transcript processed successfully",
+        ],
+      };
+    }
 
     return {
       contentType:
-        parsedData.contentType ||
-        "other",
+        parsedData.contentType || "other",
 
       summary:
         parsedData.summary ||
-        "",
+        "No summary generated",
 
       keyPoints:
-        parsedData.keyPoints ||
-        [],
+        Array.isArray(
+          parsedData.keyPoints
+        )
+          ? parsedData.keyPoints
+          : ["No key points generated"],
     };
   } catch (error) {
     console.error(
@@ -82,8 +98,11 @@ ${transcript}
 
     return {
       contentType: "other",
-      summary: "",
-      keyPoints: [],
+      summary:
+        "Analysis failed due to AI service error.",
+      keyPoints: [
+        "Unable to generate insights",
+      ],
     };
   }
 };
