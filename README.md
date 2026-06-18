@@ -99,15 +99,15 @@ Dashboard Display
 
 ### Dashboard
 
-![Dashboard](./screenshots/mindss1.jpeg)
+![Dashboard](./screenshots/mindss11.jpeg)
 
 ### Transcript Generation
 
-![Transcript](./screenshots/mindss2.jpeg)
+![Transcript](./screenshots/mindss22.jpeg)
 
 ### AI Summary & Insights
 
-![Summary](./screenshots/mindss3.jpeg)
+![Summary](./screenshots/mindss33.jpeg)
 
 ---
 
