@@ -20,33 +20,9 @@ const storage = multer.diskStorage({
   },
 });
 
-const fileFilter = (
-  req,
-  file,
-  cb
-) => {
-  console.log(
-    "Uploaded File Type:",
-    file.mimetype
-  );
-
-  if (
-    file.mimetype.startsWith("audio/")
-  ) {
-    cb(null, true);
-  } else {
-    cb(
-      new Error(
-        `Only audio files are allowed. Received: ${file.mimetype}`
-      ),
-      false
-    );
-  }
-};
-
+// TEMPORARILY REMOVE FILE FILTER
 const upload = multer({
   storage,
-  fileFilter,
 });
 
 router.post(
