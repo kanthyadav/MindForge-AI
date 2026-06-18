@@ -7,21 +7,35 @@ const generateTranscript = async (filePath) => {
 
     const audioData = fs.readFileSync(filePath);
 
-    const uploadUrl = await client.files.upload(audioData);
+    const uploadUrl =
+      await client.files.upload(audioData);
 
-    console.log("Audio uploaded successfully");
+    console.log(
+      "Audio uploaded successfully"
+    );
 
-    const transcript = await client.transcripts.transcribe({
-      audio: uploadUrl,
-      speech_models: ["universal-2"],
-    });
+    const transcript =
+      await client.transcripts.transcribe({
+        audio: uploadUrl,
+        speech_model: "universal",
+      });
 
-    console.log("Transcript generated");
+    if (!transcript.text) {
+      throw new Error(
+        "No transcript generated"
+      );
+    }
+
+    console.log(
+      "Transcript generated successfully"
+    );
 
     return transcript.text;
   } catch (error) {
-    console.error("Transcription Error:");
-    console.error(error);
+    console.error(
+      "Transcription Error:",
+      error
+    );
 
     throw error;
   }
