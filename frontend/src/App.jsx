@@ -25,7 +25,7 @@ function App() {
 
       setSessions(res.data);
     } catch (error) {
-      console.error(error);
+      console.error("Fetch Error:", error);
     }
   };
 
@@ -41,17 +41,29 @@ function App() {
     try {
       setLoading(true);
 
-      await axios.post(
+      const res = await axios.post(
         "https://mindforge-backend-api.onrender.com/api/upload",
-        formData
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
+
+      console.log("Upload Response:", res.data);
 
       await fetchSessions();
 
       setAudioFile(null);
-      setLoading(false);
     } catch (error) {
-      console.error(error);
+      console.error("Upload Error:", error);
+
+      alert(
+        error?.response?.data?.message ||
+          "Upload failed"
+      );
+    } finally {
       setLoading(false);
     }
   };
@@ -64,8 +76,8 @@ function App() {
         </h1>
 
         <p>
-          Convert lectures, meetings and interviews
-          into AI-powered insights.
+          Convert lectures, meetings and
+          interviews into AI-powered insights.
         </p>
       </div>
 
@@ -77,7 +89,7 @@ function App() {
         <div className="drop-zone">
           <input
             type="file"
-            accept=".mp3,.wav,.m4a,.mpeg"
+            accept=".mp3,.wav,.m4a,.mpeg,.aac"
             onChange={(e) =>
               setAudioFile(e.target.files[0])
             }
@@ -94,7 +106,10 @@ function App() {
           )}
         </div>
 
-        <button onClick={handleUpload}>
+        <button
+          onClick={handleUpload}
+          disabled={loading}
+        >
           {loading
             ? "🧠 AI Analyzing..."
             : "Upload & Analyze"}
@@ -107,10 +122,11 @@ function App() {
         {sessions.length === 0 ? (
           <div className="empty-card">
             <h3>🧠 No Sessions Yet</h3>
+
             <p>
-              Upload your first lecture, meeting,
-              or interview recording to generate
-              AI insights.
+              Upload your first lecture,
+              meeting, or interview recording
+              to generate AI insights.
             </p>
           </div>
         ) : (
@@ -132,7 +148,10 @@ function App() {
                   <FaFileAlt /> Summary
                 </h4>
 
-                <p>{session.summary}</p>
+                <p>
+                  {session.summary ||
+                    "No summary generated"}
+                </p>
               </div>
 
               <div className="section">
@@ -140,13 +159,22 @@ function App() {
                   <FaLightbulb /> Key Points
                 </h4>
 
-                <ul>
-                  {session.keyPoints?.map(
-                    (point, index) => (
-                      <li key={index}>{point}</li>
-                    )
-                  )}
-                </ul>
+                {session.keyPoints &&
+                session.keyPoints.length > 0 ? (
+                  <ul>
+                    {session.keyPoints.map(
+                      (point, index) => (
+                        <li key={index}>
+                          {point}
+                        </li>
+                      )
+                    )}
+                  </ul>
+                ) : (
+                  <p>
+                    No key points generated
+                  </p>
+                )}
               </div>
 
               <div className="date">
