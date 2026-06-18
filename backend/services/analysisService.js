@@ -2,14 +2,21 @@ const genAI = require("./aiService");
 
 const analyzeTranscript = async (transcript) => {
   try {
+    console.log("========== GEMINI STARTED ==========");
+
+    const model =
+      genAI.getGenerativeModel({
+        model: "gemini-1.5-flash",
+      });
+
     const prompt = `
 Analyze the following transcript.
 
-Return ONLY a valid JSON object.
+Return ONLY valid JSON.
 
 {
   "contentType": "lecture",
-  "summary": "Detailed summary here",
+  "summary": "Detailed summary",
   "keyPoints": [
     "Point 1",
     "Point 2",
@@ -21,80 +28,56 @@ Return ONLY a valid JSON object.
 
 Rules:
 - contentType must be one of:
-  lecture, meeting, interview, other
+lecture, meeting, interview, other
+
 - summary must be between 150 and 250 words
+
 - generate 5 to 8 key points
+
 - return ONLY JSON
-- no markdown
-- no explanations
 
 Transcript:
 ${transcript}
 `;
 
-    const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash",
-    });
-
     const result =
       await model.generateContent(prompt);
+
+    console.log(
+      "========== GEMINI RESPONSE RECEIVED =========="
+    );
 
     let content =
       result.response.text();
 
     content = content
-      .replace(/```json/gi, "")
+      .replace(/```json/g, "")
       .replace(/```/g, "")
       .trim();
 
-    console.log(
-      "========== GEMINI RESPONSE =========="
-    );
     console.log(content);
-    console.log(
-      "====================================="
-    );
 
-    let parsedData;
-
-    try {
-      parsedData = JSON.parse(content);
-    } catch (parseError) {
-      console.error(
-        "JSON Parse Error:",
-        parseError
-      );
-
-      return {
-        contentType: "other",
-        summary:
-          "AI generated response could not be parsed.",
-        keyPoints: [
-          "Transcript processed successfully",
-        ],
-      };
-    }
+    const parsedData =
+      JSON.parse(content);
 
     return {
       contentType:
-        parsedData.contentType || "other",
+        parsedData.contentType ||
+        "other",
 
       summary:
         parsedData.summary ||
         "No summary generated",
 
       keyPoints:
-        Array.isArray(
-          parsedData.keyPoints
-        )
-          ? parsedData.keyPoints
-          : ["No key points generated"],
+        parsedData.keyPoints || [],
     };
   } catch (error) {
     console.error(
-      "AI Analysis Error:",
-      error
+      "========== GEMINI ERROR =========="
     );
+
+    console.error(error);
 
     return {
       contentType: "other",
