@@ -1,28 +1,54 @@
 # 🧠 MindForge AI
 
-MindForge AI is a full-stack MERN application that transforms audio recordings into actionable insights using Artificial Intelligence.
+MindForge AI is an AI-powered learning assistant that transforms audio lectures, meetings, and interviews into structured learning materials using Artificial Intelligence.
 
-Users can upload lectures, meetings, or interviews and automatically generate:
+Users can upload audio recordings and automatically generate:
 
-* Speech-to-text transcripts
-* AI-generated summaries
-* Key learning points
+* 🎤 Speech-to-Text Transcripts
+* 📝 AI-Powered Summaries
+* ⭐ Key Learning Points
+* 📚 Study Notes
+
+---
+
+## 🌐 Live Demo
+
+https://mind-forge-ai-opal.vercel.app
 
 ---
 
 ## 🚀 Features
 
-* 🎤 Audio Upload
-* 📝 Speech-to-Text using AssemblyAI
-* 🤖 AI Analysis using OpenRouter
-* 📄 Automatic Summary Generation
-* ⭐ Key Point Extraction
-* 💾 MongoDB Session Storage
-* 🎨 Modern React Dashboard
+### 🎤 Audio Processing
+
+* Upload Audio Files
+* Lecture Analysis
+* Meeting Analysis
+* Interview Analysis
+* Automatic Transcription
+
+### 🤖 AI Analysis
+
+* Transcript Summarization
+* Key Point Extraction
+* Learning Insights
+* Smart Content Understanding
+
+### 💾 Data Management
+
+* MongoDB Atlas Integration
+* Session Storage
+* History Tracking
+
+### 🎨 User Interface
+
+* Modern React Dashboard
+* Responsive Design
+* Clean User Experience
 
 ---
 
-## 🛠 Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
 
@@ -38,6 +64,7 @@ Users can upload lectures, meetings, or interviews and automatically generate:
 ### Database
 
 * MongoDB Atlas
+* Mongoose
 
 ### AI Services
 
@@ -48,16 +75,80 @@ Users can upload lectures, meetings, or interviews and automatically generate:
 
 ## ⚙️ Workflow
 
-Audio Upload → Transcript Generation → AI Analysis → Summary & Key Points → Dashboard Display
+Audio Upload
+
+⬇️
+
+Speech-to-Text
+
+⬇️
+
+AI Analysis
+
+⬇️
+
+Summary & Key Points
+
+⬇️
+
+Dashboard Display
 
 ---
 
 ## 📸 Screenshots
 
-Coming Soon
+### Dashboard
+
+![Dashboard](./screenshots/mindss1.jpeg)
+
+### Transcript Generation
+
+![Transcript](./screenshots/mindss2.jpeg)
+
+### AI Summary & Insights
+
+![Summary](./screenshots/mindss3.jpeg)
+
+---
+
+## 📂 Project Structure
+
+```text
+MindForge-AI
+│
+├── backend
+├── frontend
+├── screenshots
+├── README.md
+└── package.json
+```
+
+---
+
+## 🚀 Installation
+
+### Backend
+
+```bash
+cd backend
+npm install
+npm start
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm start
+```
 
 ---
 
 ## 👨‍💻 Author
 
 Laxmikant Yadav
+
+GitHub: https://github.com/kanthyadav
+
+LinkedIn: https://linkedin.com/in/laxmikant-yadav-b4443825a
