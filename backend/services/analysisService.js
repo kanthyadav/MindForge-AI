@@ -2,11 +2,13 @@ const genAI = require("./aiService");
 
 const analyzeTranscript = async (transcript) => {
   try {
-    console.log("========== GEMINI STARTED ==========");
+    console.log(
+      "========== GEMINI STARTED =========="
+    );
 
     const model =
       genAI.getGenerativeModel({
-        model: "gemini-1.5-flash",
+        model: "gemini-2.0-flash",
       });
 
     const prompt = `
@@ -16,7 +18,7 @@ Return ONLY valid JSON.
 
 {
   "contentType": "lecture",
-  "summary": "Detailed summary",
+  "summary": "Detailed summary here",
   "keyPoints": [
     "Point 1",
     "Point 2",
@@ -51,7 +53,7 @@ ${transcript}
       result.response.text();
 
     content = content
-      .replace(/```json/g, "")
+      .replace(/```json/gi, "")
       .replace(/```/g, "")
       .trim();
 
@@ -70,7 +72,11 @@ ${transcript}
         "No summary generated",
 
       keyPoints:
-        parsedData.keyPoints || [],
+        Array.isArray(
+          parsedData.keyPoints
+        )
+          ? parsedData.keyPoints
+          : [],
     };
   } catch (error) {
     console.error(
