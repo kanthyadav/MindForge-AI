@@ -190,3 +190,89 @@ body {
     align-items: flex-start;
   }
 }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.navbar button {
+  background: #ef4444;
+  color: white;
+
+  border: none;
+
+  padding: 10px 20px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+}
+
+.auth-container {
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+}
+
+.auth-card {
+  width: 400px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(20px);
+
+  padding: 30px;
+
+  border-radius: 20px;
+}
+
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-card input {
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  outline: none;
+}
+
+.auth-card button {
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: linear-gradient(
+    90deg,
+    #3b82f6,
+    #8b5cf6
+  );
+
+  color: white;
+
+  cursor: pointer;
+}
+
+.auth-card p {
+  margin-top: 15px;
+  text-align: center;
+}
