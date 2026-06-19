@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const fs = require("fs");
 
 dotenv.config();
 
@@ -10,6 +11,11 @@ const sessionRoutes = require("./routes/sessionRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
 
 const app = express();
+
+// Create uploads folder if missing
+if (!fs.existsSync("uploads")) {
+  fs.mkdirSync("uploads");
+}
 
 // Middleware
 app.use(cors());
