@@ -21,6 +21,9 @@ function App() {
   const [sessions, setSessions] =
     useState([]);
 
+  const [search, setSearch] =
+    useState("");
+
   useEffect(() => {
     if (token) {
       fetchSessions();
@@ -55,6 +58,13 @@ function App() {
     );
   }
 
+  const filteredSessions =
+    sessions.filter((session) =>
+      session.title
+        ?.toLowerCase()
+        .includes(search.toLowerCase())
+    );
+
   return (
     <div className="app">
       <Navbar setToken={setToken} />
@@ -72,20 +82,45 @@ function App() {
         fetchSessions={fetchSessions}
       />
 
+      <input
+        type="text"
+        placeholder="🔍 Search Sessions..."
+        value={search}
+        onChange={(e) =>
+          setSearch(e.target.value)
+        }
+        style={{
+          width: "100%",
+          padding: "14px",
+          borderRadius: "12px",
+          border: "none",
+          marginBottom: "25px",
+          fontSize: "16px",
+        }}
+      />
+
       <div className="sessions-section">
         <h2>Recent Sessions</h2>
 
-        {sessions.length === 0 ? (
+        {filteredSessions.length ===
+        0 ? (
           <div className="empty-card">
-            <h3>🧠 No Sessions Yet</h3>
+            <h3>
+              🧠 No Sessions Found
+            </h3>
           </div>
         ) : (
-          sessions.map((session) => (
-            <SessionCard
-              key={session._id}
-              session={session}
-            />
-          ))
+          filteredSessions.map(
+            (session) => (
+              <SessionCard
+                key={session._id}
+                session={session}
+                fetchSessions={
+                  fetchSessions
+                }
+              />
+            )
+          )
         )}
       </div>
     </div>
