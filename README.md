@@ -13,7 +13,11 @@ Users can upload audio recordings and automatically generate:
 
 ## 🌐 Live Demo
 
-Frontend: https://mind-forge-ai-opal.vercel.app
+**Frontend (Vercel)**
+https://mind-forge-ai-opal.vercel.app
+
+**Backend API (Render)**
+https://mindforge-backend-6u3o.onrender.com
 
 ---
 
@@ -49,6 +53,12 @@ Frontend: https://mind-forge-ai-opal.vercel.app
 * User-Specific Sessions
 * Session History Tracking
 * Secure Data Storage
+
+### 📂 Session Management
+
+* Search Sessions
+* Delete Sessions
+* PDF Export
 
 ### 🎨 User Interface
 
@@ -231,14 +241,13 @@ GEMINI_API_KEY=your_gemini_api_key
 
 ## 🎯 Future Enhancements
 
-* Delete Sessions
-* Search Sessions
-* Quiz Generation
+* AI Quiz Generation
 * Revision Notes
-* PDF Export
+* AI Chat Assistant
 * User Profiles
 * Forgot Password
-* AI Chat Assistant
+* DOCX Export
+* Session Sharing
 
 ---
 
