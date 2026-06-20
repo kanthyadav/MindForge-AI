@@ -107,17 +107,12 @@ function Register({
           Already have an
           account?{" "}
           <span
+            className="auth-link"
             onClick={() =>
               setIsLogin(
                 true
               )
             }
-            style={{
-              cursor:
-                "pointer",
-              color:
-                "#60a5fa",
-            }}
           >
             Login
           </span>

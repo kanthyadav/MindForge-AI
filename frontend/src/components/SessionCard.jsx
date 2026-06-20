@@ -6,7 +6,6 @@ import {
 } from "react-icons/fa";
 
 import { jsPDF } from "jspdf";
-
 import API from "../services/api";
 
 function SessionCard({
@@ -44,7 +43,6 @@ function SessionCard({
     const doc = new jsPDF();
 
     doc.setFontSize(18);
-
     doc.text(
       "MindForge AI Notes",
       20,
@@ -116,7 +114,7 @@ function SessionCard({
         <h3>{session.title}</h3>
 
         <span className="badge">
-          📚 {session.contentType}
+          {session.contentType}
         </span>
       </div>
 
@@ -155,13 +153,7 @@ function SessionCard({
         )}
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          marginTop: "20px",
-        }}
-      >
+      <div className="session-actions">
         <button
           onClick={
             handleDownloadPDF

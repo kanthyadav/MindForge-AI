@@ -95,7 +95,7 @@ function UploadSection({ fetchSessions }) {
         disabled={loading}
       >
         {loading
-          ? "🧠 AI Analyzing..."
+          ? " AI Analyzing..."
           : "Upload & Analyze"}
       </button>
     </div>

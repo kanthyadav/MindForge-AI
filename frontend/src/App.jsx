@@ -62,7 +62,9 @@ function App() {
     sessions.filter((session) =>
       session.title
         ?.toLowerCase()
-        .includes(search.toLowerCase())
+        .includes(
+          search.toLowerCase()
+        )
     );
 
   return (
@@ -70,11 +72,12 @@ function App() {
       <Navbar setToken={setToken} />
 
       <div className="hero">
-        <h1>🧠 MindForge AI</h1>
+        <h1>MindForge AI</h1>
 
         <p>
-          Convert lectures, meetings and
-          interviews into AI-powered insights.
+          Convert lectures,
+          meetings and interviews
+          into AI-powered insights.
         </p>
       </div>
 
@@ -87,16 +90,11 @@ function App() {
         placeholder="🔍 Search Sessions..."
         value={search}
         onChange={(e) =>
-          setSearch(e.target.value)
+          setSearch(
+            e.target.value
+          )
         }
-        style={{
-          width: "100%",
-          padding: "14px",
-          borderRadius: "12px",
-          border: "none",
-          marginBottom: "25px",
-          fontSize: "16px",
-        }}
+        className="search-input"
       />
 
       <div className="sessions-section">
@@ -106,7 +104,7 @@ function App() {
         0 ? (
           <div className="empty-card">
             <h3>
-              🧠 No Sessions Found
+              No Sessions Found
             </h3>
           </div>
         ) : (

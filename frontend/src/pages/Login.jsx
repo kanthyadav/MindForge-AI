@@ -72,13 +72,10 @@ function Login({ setToken, setIsLogin }) {
         <p>
           Don't have an account?{" "}
           <span
+            className="auth-link"
             onClick={() =>
               setIsLogin(false)
             }
-            style={{
-              cursor: "pointer",
-              color: "#60a5fa",
-            }}
           >
             Register
           </span>
