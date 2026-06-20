@@ -1,17 +1,17 @@
-# 🧠 MindForge AI
+#  MindForge AI
 
 MindForge AI is an AI-powered learning assistant that transforms audio lectures, meetings, and interviews into structured learning materials using Artificial Intelligence.
 
 Users can upload audio recordings and automatically generate:
 
-* 🎤 Speech-to-Text Transcripts
-* 📝 AI-Powered Summaries
-* ⭐ Key Learning Points
-* 📚 Study Notes
+*  Speech-to-Text Transcripts
+*  AI-Powered Summaries
+*  Key Learning Points
+*  Study Notes
 
 ---
 
-## 🌐 Live Demo
+##  Live Demo
 
 **Frontend (Vercel)**
 https://mind-forge-ai-opal.vercel.app
@@ -21,9 +21,9 @@ https://mindforge-backend-6u3o.onrender.com
 
 ---
 
-## 🚀 Features
+##  Features
 
-### 🔐 Authentication
+###  Authentication
 
 * User Registration
 * User Login
@@ -32,7 +32,7 @@ https://mindforge-backend-6u3o.onrender.com
 * Secure Session Management
 * Logout Functionality
 
-### 🎤 Audio Processing
+###  Audio Processing
 
 * Upload Audio Files
 * Lecture Analysis
@@ -40,27 +40,27 @@ https://mindforge-backend-6u3o.onrender.com
 * Interview Analysis
 * Automatic Transcription
 
-### 🤖 AI Analysis
+###  AI Analysis
 
 * Transcript Summarization
 * Key Point Extraction
 * Learning Insights
 * Smart Content Understanding
 
-### 💾 Data Management
+###  Data Management
 
 * MongoDB Atlas Integration
 * User-Specific Sessions
 * Session History Tracking
 * Secure Data Storage
 
-### 📂 Session Management
+###  Session Management
 
 * Search Sessions
 * Delete Sessions
 * PDF Export
 
-### 🎨 User Interface
+###  User Interface
 
 * Modern React Dashboard
 * Responsive Design
@@ -69,7 +69,7 @@ https://mindforge-backend-6u3o.onrender.com
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Frontend
 
@@ -97,7 +97,7 @@ https://mindforge-backend-6u3o.onrender.com
 
 ---
 
-## ⚙️ Workflow
+##  Workflow
 
 Audio Upload
 
@@ -119,9 +119,9 @@ Dashboard Display
 
 ---
 
-## 📸 Screenshots
+##  Screenshots
 
-### 🔐 Login Page
+###  Login Page
 
 ![Login](./screenshots/loginmind.jpeg)
 
@@ -129,7 +129,7 @@ Modern authentication page with JWT-based user login.
 
 ---
 
-### 📝 Register Page
+###  Register Page
 
 ![Register](./screenshots/register.jpeg)
 
@@ -137,7 +137,7 @@ User registration interface with secure account creation.
 
 ---
 
-### 🧠 Dashboard
+###  Dashboard
 
 ![Dashboard](./screenshots/dashboard.jpeg)
 
@@ -145,7 +145,7 @@ MindForge AI dashboard for audio uploads and AI-powered analysis.
 
 ---
 
-### 📄 AI Transcript Generation
+###  AI Transcript Generation
 
 ![Transcript](./screenshots/mindss22.jpeg)
 
@@ -153,7 +153,7 @@ Automatic speech-to-text transcription generated from uploaded audio recordings 
 
 ---
 
-### ⭐ AI Summary & Insights
+###  AI Summary & Insights
 
 ![Summary](./screenshots/mindss33.jpeg)
 
@@ -161,7 +161,7 @@ AI-generated summaries, key learning points, and intelligent insights extracted 
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 MindForge-AI
@@ -191,7 +191,7 @@ MindForge-AI
 
 ---
 
-## 🚀 Installation
+##  Installation
 
 ### Clone Repository
 
@@ -223,7 +223,7 @@ npm run dev
 
 ---
 
-## 🔑 Environment Variables
+##  Environment Variables
 
 Create a `.env` file inside the backend folder.
 
@@ -239,7 +239,7 @@ GEMINI_API_KEY=your_gemini_api_key
 
 ---
 
-## 🎯 Future Enhancements
+##  Future Enhancements
 
 * AI Quiz Generation
 * Revision Notes
@@ -251,7 +251,7 @@ GEMINI_API_KEY=your_gemini_api_key
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 ### Laxmikant Yadav
 
@@ -263,4 +263,4 @@ https://linkedin.com/in/laxmikant-yadav-b4443825a
 
 ---
 
-⭐ If you like this project, consider giving it a star on GitHub.
+If you like this project, consider giving it a star on GitHub.
